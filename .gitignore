@@ -1,0 +1,10 @@
+# Raw data files (download with ./download_data.sh)
+data/
+
+# Analysis output (regenerate with python3 analysis.py)
+output/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
