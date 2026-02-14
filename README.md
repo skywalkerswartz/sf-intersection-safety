@@ -6,9 +6,34 @@ Interactive analysis of crash rates at 703 San Francisco intersections, normaliz
 
 ![Screenshot](screenshot.png)
 
+## Why I built this
+
+This was designed with 2 goals in mind:
+
+1. Analyze data for San Francisco's streets, to help inform public debate and policy around stop signs vs. signals
+2. Experiment with "vibe coding"
+
+I hope this will be of interest to both fellow transportation nerds and fellow AI/tech nerds!
+
 ## Key Finding
 
-Even after normalizing for traffic volume, **signalized intersections have crash rates 2-3x higher** than stop-sign-controlled intersections (Kruskal-Wallis H=141.48, p<0.000001). This likely reflects that signals are placed at the busiest, most complex intersections — the elevated rate persists even after volume normalization.
+Even after normalizing for traffic volume, **signalized intersections have crash rates 2-3x higher** than stop-sign-controlled intersections (Kruskal-Wallis H=141.48, p<0.000001).
+
+This jibes with my hypothesis, that signals are more dangerous (since they don't require motorists to stop before proceeding through the intersection, thus leading to speeding and less caution), although there could still be correlation-vs-causation effects in play (e.g. maybe traffic engineers install signals in more inherently-dangerous intersections?).
+
+...however, I did not find significant evidence for my other hypothesis, that 2-way stops are more dangerous than 4-way stops (when normalized for traffic). This requires more study/analysis (perhaps with data from multiple cities).
+
+## How this was built
+
+I used Claude Code, Opus 4.6 model.
+
+The primary prompt was
+> I would like to perform an analysis of the relative crash/injury/traffic accident rate at different San Francisco intersections, relative to the amount of traffic that they have. Can you investigate different data sources for intersection-level traffic and accidents, and compare them? I'd also like to see what, if any, correlation there is between this traffic-normalized accident rate and different kinds of traffic signs/signals (e.g. are there more traffic-normalized accidents at stoplights than stop signs? what about 4-way stops versus 2-way stops?). An ideal solution would include both a visualization as well as more raw data/statistics.
+
+...which produced some very nice analysis/graphs, and was further refined with the following prompt:
+> Can you now make a web application that allows visualizing and exploring this data? This should include interactive versions of those charts (e.g. hovering over/clicking on a given data point on the scatter chart should bring up information about that intersection), and perhaps a visual map that allows filtering by various types of intersections. I'd also love a way to show those charts/graphs with filters, e.g. if one only considers intersections with less than a given amount of traffic, what is the traffic-weighted crash rate, etc?
+
+While Claude Code did some debugging on its own, I had to do some manual debugging to get it to work properly (including sorting out some bad data). To be honest, I'm still not 100% positive that the data is all accurate, so please contact me or suggest changes if you notice mistakes!
 
 ## Features
 
